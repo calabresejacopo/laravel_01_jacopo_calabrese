@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ArticleController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/pagina1', function () {
-    return view('pagina1');
-});
-Route::get('/pagina2', function(){
-    return view('pagina2');
-});
+
+Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
+Route::get('/about-us', [PublicController::class, 'chisiamo']
+)->name('chi-siamo');
+Route::get('/servizi', [PublicController::class, 'servizi'])->name('servizi');
+Route::get('/articles',[ArticleController::class, 'articoli'])->name('articoli');
+Route::get('/articles/dettaglioarticolo/{titolo}', [ArticleController::class, 'dettaglioArticolo']
+)->name('dettaglio-articolo');
